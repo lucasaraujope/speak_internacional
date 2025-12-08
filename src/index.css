@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Speak Online - Brand Colors */
+    --background: 0 0% 100%;
+    --foreground: 242 93% 14%;
+    --white-text: #fff;
+
+    --card: 0 0% 100%;
+    --card-foreground: 242 93% 14%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 242 93% 14%;
+
+    /* Primary - Navy Blue #050740 */
+    --primary: 242 93% 14%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary - Gold #D9AF49 */
+    --secondary: 43 64% 57%;
+    --secondary-foreground: 242 93% 14%;
+
+    --muted: 240 5% 96%;
+    --muted-foreground: 242 30% 45%;
+
+    /* Accent - Lighter Gold #ECCA68 */
+    --accent: 46 74% 67%;
+    --accent-foreground: 242 93% 14%;
+
+    /* Gold Dark #C69329 */
+    --gold-dark: 42 66% 47%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 240 5% 90%;
+    --input: 240 5% 90%;
+    --ring: 242 93% 14%;
+
+    --radius: 0.75rem;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(242 93% 14%) 0%, hsl(242 93% 20%) 100%);
+    --gradient-gold: linear-gradient(135deg, hsl(43 64% 57%) 0%, hsl(42 66% 47%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(242 93% 14%) 0%, hsl(242 80% 25%) 100%);
+
+    /* Shadows */
+    --shadow-card: 0 2px 8px -2px hsl(242 93% 14% / 0.1);
+    --shadow-card-hover: 0 8px 24px -4px hsl(242 93% 14% / 0.15);
+    --shadow-gold: 0 4px 16px -2px hsl(43 64% 57% / 0.3);
+
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+    font-weight: 700;
+  }
+
+  .smooth-transition {
+    transition: var(--transition-smooth);
+  }
+}
+
+@layer utilities {
+  .text-gradient-gold {
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
