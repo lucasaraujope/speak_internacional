@@ -17,10 +17,25 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const ExtraCourses = () => {
+const SpecificCourses = () => {
     const heroReveal = useScrollReveal();
     const coursesReveal = useScrollReveal();
     const workshopsReveal = useScrollReveal();
+
+    const openWhatsApp = (courseName: string) => {
+        const message = encodeURIComponent(`Olá! Eu gostaria de saber mais sobre o curso de ${courseName}.`);
+        window.open(`https://wa.me/5512991298390?text=${message}`, "_blank");
+    };
+
+    const openWorkshopWhatsApp = (workshopName: string) => {
+        const message = encodeURIComponent(`Olá! Eu gostaria de reservar uma vaga no workshop "${workshopName}".`);
+        window.open(`https://wa.me/5512991298390?text=${message}`, "_blank");
+    };
+
+    const openConsultantWhatsApp = () => {
+        const message = encodeURIComponent("Olá! Gostaria de falar com um consultor sobre um programa personalizado.");
+        window.open(`https://wa.me/5512991298390?text=${message}`, "_blank");
+    };
 
     const extraCourses = [
         {
@@ -119,7 +134,7 @@ const ExtraCourses = () => {
             >
                 <div className="container mx-auto px-4 text-center">
                     <h1 className="text-4xl md:text-6xl font-bold text-primary-foreground mb-6">
-                        Cursos <span className="text-gradient-gold">Extras</span>
+                        Cursos <span className="text-gradient-gold">Específicos</span>
                     </h1>
                     <p className="text-xl text-primary-foreground/80 max-w-3xl mx-auto">
                         Aprimore habilidades específicas com nossos cursos complementares
@@ -182,7 +197,10 @@ const ExtraCourses = () => {
                                     </ul>
 
                                     <div className="pt-4 border-t border-border">
-                                        <Button className="w-full bg-gradient-gold text-primary hover:shadow-gold">
+                                        <Button
+                                            onClick={() => openWhatsApp(course.title)}
+                                            className="w-full bg-gradient-gold text-primary hover:shadow-gold"
+                                        >
                                             Inscrever-se
                                         </Button>
                                     </div>
@@ -230,7 +248,12 @@ const ExtraCourses = () => {
                                     <span className="text-sm text-muted-foreground">
                                         <span className="text-secondary font-bold">{workshop.spots}</span> vagas restantes
                                     </span>
-                                    <Button variant="outline" size="sm" className="border-secondary text-secondary hover:bg-secondary hover:text-primary">
+                                    <Button
+                                        variant="outline"
+                                        size="sm"
+                                        className="border-secondary text-secondary hover:bg-secondary hover:text-primary"
+                                        onClick={() => openWorkshopWhatsApp(workshop.title)}
+                                    >
                                         Reservar <ArrowRight className="w-4 h-4 ml-1" />
                                     </Button>
                                 </div>
@@ -249,7 +272,10 @@ const ExtraCourses = () => {
                     <p className="text-primary-foreground/80 mb-8 max-w-xl mx-auto">
                         Entre em contato conosco e criaremos um programa personalizado para suas necessidades.
                     </p>
-                    <Button className="bg-gradient-gold text-primary hover:shadow-gold text-lg px-8 py-6">
+                    <Button
+                        onClick={openConsultantWhatsApp}
+                        className="bg-gradient-gold text-primary hover:shadow-gold text-lg px-8 py-6"
+                    >
                         Fale com um Consultor
                     </Button>
                 </div>
@@ -261,4 +287,4 @@ const ExtraCourses = () => {
     );
 };
 
-export default ExtraCourses;
+export default SpecificCourses;
