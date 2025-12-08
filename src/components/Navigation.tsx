@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router-dom";
+{/*import logoFundoEscuro from "../assets/"
+import logoFundoClaro from "@/assets/logo-azul.png";*/}
 
 const Navigation = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -43,9 +45,11 @@ const Navigation = () => {
             <div className="container mx-auto px-4">
                 <div className="flex items-center justify-between h-20">
                     <Link to="/" className="flex items-center space-x-2">
-                        <div className="text-2xl font-bold text-primary">
-                            Speak <span className="text-gradient-gold">Online</span>
-                        </div>
+                        {/*<img
+                            src={isScrolled ? logoFundoClaro : logoFundoEscuro}
+                            alt="Speak Online Internacional"
+                            className="h-12 w-auto"
+                        />*/}
                     </Link>
 
                     {/* Desktop Menu */}
@@ -55,7 +59,7 @@ const Navigation = () => {
                                 <button
                                     key={link.label}
                                     onClick={() => scrollToSection(link.scrollId!)}
-                                    className="text-foreground hover:text-secondary smooth-transition font-medium"
+                                    className={`${isScrolled ? "text-primary" : "text-white"} hover:text-secondary smooth-transition font-medium`}
                                 >
                                     {link.label}
                                 </button>
@@ -63,7 +67,7 @@ const Navigation = () => {
                                 <Link
                                     key={link.label}
                                     to={link.href!}
-                                    className={`text-foreground hover:text-secondary smooth-transition font-medium ${location.pathname === link.href ? "text-secondary" : ""
+                                    className={`${isScrolled ? "text-primary" : "text-white"} hover:text-secondary smooth-transition font-medium ${location.pathname === link.href ? "text-secondary" : ""
                                         }`}
                                 >
                                     {link.label}
@@ -76,7 +80,7 @@ const Navigation = () => {
                             <button
                                 onClick={() => setIsCoursesOpen(!isCoursesOpen)}
                                 onBlur={() => setTimeout(() => setIsCoursesOpen(false), 150)}
-                                className="flex items-center gap-1 text-foreground hover:text-secondary smooth-transition font-medium"
+                                className={`flex items-center gap-1 ${isScrolled ? "text-primary" : "text-white"} hover:text-secondary smooth-transition font-medium`}
                             >
                                 Cursos <ChevronDown className={`w-4 h-4 transition-transform ${isCoursesOpen ? "rotate-180" : ""}`} />
                             </button>
@@ -84,15 +88,21 @@ const Navigation = () => {
                                 <div className="absolute top-full left-0 mt-2 w-48 bg-background border border-border rounded-lg shadow-lg overflow-hidden animate-fade-in">
                                     <button
                                         onClick={() => { scrollToSection("cursos"); setIsCoursesOpen(false); }}
-                                        className="block w-full text-left px-4 py-3 --white-text hover:bg-muted hover:text-secondary transition-colors"
+                                        className="block w-full text-left px-4 py-3 text-foreground hover:bg-muted hover:text-secondary transition-colors"
                                     >
                                         Cursos Principais
                                     </button>
                                     <Link
-                                        to="/cursos-extras"
+                                        to="/cursos-especificos"
                                         className="block px-4 py-3 text-foreground hover:bg-muted hover:text-secondary transition-colors"
                                     >
-                                        Cursos Extras
+                                        Cursos Específicos
+                                    </Link>
+                                    <Link
+                                        to="/ingles-para-empresas"
+                                        className="block px-4 py-3 text-foreground hover:bg-muted hover:text-secondary transition-colors"
+                                    >
+                                        Inglês para Empresas
                                     </Link>
                                 </div>
                             )}
@@ -100,7 +110,7 @@ const Navigation = () => {
 
                         <button
                             onClick={() => scrollToSection("planos")}
-                            className="text-foreground hover:text-secondary smooth-transition font-medium"
+                            className={`${isScrolled ? "text-primary" : "text-white"} hover:text-secondary smooth-transition font-medium`}
                         >
                             Planos
                         </button>
@@ -115,7 +125,7 @@ const Navigation = () => {
 
                     {/* Mobile Menu Button */}
                     <button
-                        className="md:hidden text-foreground"
+                        className={`md:hidden ${isScrolled ? "text-primary" : "text-white"} hover:text-secondary smooth-transition`}
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                     >
                         {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -145,11 +155,18 @@ const Navigation = () => {
                             Cursos Principais
                         </button>
                         <Link
-                            to="/cursos-extras"
+                            to="/cursos-especificos"
                             className="block px-4 py-3 text-foreground hover:bg-muted"
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
-                            Cursos Extras
+                            Cursos Específicos
+                        </Link>
+                        <Link
+                            to="/ingles-para-empresas"
+                            className="block px-4 py-3 text-foreground hover:bg-muted"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                            Inglês para Empresas
                         </Link>
                         <button
                             onClick={() => scrollToSection("planos")}
