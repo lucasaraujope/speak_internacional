@@ -11,7 +11,6 @@ All colors MUST be HSL.
     /* Speak Online - Brand Colors */
     --background: 0 0% 100%;
     --foreground: 242 93% 14%;
-    --white-text: #fff;
 
     --card: 0 0% 100%;
     --card-foreground: 242 93% 14%;
@@ -71,12 +70,7 @@ All colors MUST be HSL.
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  h1, h2, h3, h4, h5, h6 {
     font-family: 'Poppins', system-ui, -apple-system, sans-serif;
     font-weight: 700;
   }
