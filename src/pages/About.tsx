@@ -3,34 +3,26 @@ import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { Target, Eye, Heart, Award, Users, Globe } from "lucide-react";
+import { Target, Eye, MessageCircle, Brain, Heart, TrendingUp, User, Lightbulb, Award } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { useState } from "react";
+import type { LucideIcon } from "lucide-react";
 
 const About = () => {
     const heroReveal = useScrollReveal();
     const missionReveal = useScrollReveal();
     const valuesReveal = useScrollReveal();
+    const { t } = useLanguage();
+    const [hoveredValue, setHoveredValue] = useState<number | null>(null);
 
-    const values = [
-        {
-            icon: Target,
-            title: "Excelência",
-            description: "Comprometidos com os mais altos padrões de ensino e resultados.",
-        },
-        {
-            icon: Heart,
-            title: "Dedicação",
-            description: "Cada aluno recebe atenção personalizada para alcançar seus objetivos.",
-        },
-        {
-            icon: Users,
-            title: "Comunidade",
-            description: "Construímos uma rede de profissionais que se apoiam mutuamente.",
-        },
-        {
-            icon: Globe,
-            title: "Globalização",
-            description: "Preparamos você para oportunidades em qualquer lugar do mundo.",
-        },
+    const values: { titleKey: string; descKey: string; Icon: LucideIcon }[] = [
+        { titleKey: 'value1.title', descKey: 'value1.desc', Icon: MessageCircle },
+        { titleKey: 'value2.title', descKey: 'value2.desc', Icon: Brain },
+        { titleKey: 'value3.title', descKey: 'value3.desc', Icon: Heart },
+        { titleKey: 'value4.title', descKey: 'value4.desc', Icon: TrendingUp },
+        { titleKey: 'value5.title', descKey: 'value5.desc', Icon: User },
+        { titleKey: 'value6.title', descKey: 'value6.desc', Icon: Lightbulb },
+        { titleKey: 'value7.title', descKey: 'value7.desc', Icon: Award },
     ];
 
     return (
@@ -46,11 +38,10 @@ const About = () => {
             >
                 <div className="container mx-auto px-4 text-center">
                     <h1 className="text-4xl md:text-6xl font-bold text-primary-foreground mb-6">
-                        Sobre a <span className="text-gradient-gold">Speak Online</span>
+                        {t('about.title')} <span className="text-gradient-gold">Speak Online</span>
                     </h1>
                     <p className="text-xl text-primary-foreground/80 max-w-3xl mx-auto">
-                        Há mais de 10 anos transformando vidas através do ensino de inglês de qualidade,
-                        conectando profissionais brasileiros às melhores oportunidades do mundo.
+                        {t('about.description')}
                     </p>
                 </div>
             </section>
@@ -67,11 +58,9 @@ const About = () => {
                             <div className="w-16 h-16 bg-gradient-gold rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                                 <Target className="w-8 h-8 text-primary" />
                             </div>
-                            <h2 className="text-2xl font-bold text-foreground mb-4">Nossa Missão</h2>
+                            <h2 className="text-2xl font-bold text-foreground mb-4">{t('about.missionTitle')}</h2>
                             <p className="text-muted-foreground leading-relaxed">
-                                Democratizar o acesso ao ensino de inglês de alta qualidade, utilizando
-                                tecnologia e metodologias inovadoras para capacitar profissionais a
-                                alcançarem fluência e conquistarem suas metas de carreira internacional.
+                                {t('about.missionDesc')}
                             </p>
                         </div>
 
@@ -79,11 +68,9 @@ const About = () => {
                             <div className="w-16 h-16 bg-gradient-gold rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                                 <Eye className="w-8 h-8 text-primary" />
                             </div>
-                            <h2 className="text-2xl font-bold text-foreground mb-4">Nossa Visão</h2>
+                            <h2 className="text-2xl font-bold text-foreground mb-4">{t('about.visionTitle')}</h2>
                             <p className="text-muted-foreground leading-relaxed">
-                                Ser reconhecida como a principal escola de inglês online do Brasil,
-                                formando uma comunidade global de profissionais bilíngues preparados
-                                para liderar em um mercado cada vez mais conectado.
+                                {t('about.visionDesc')}
                             </p>
                         </div>
                     </div>
@@ -98,26 +85,61 @@ const About = () => {
             >
                 <div className="container mx-auto px-4">
                     <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
-                        Nossos <span className="text-gradient-gold">Valores</span>
+                        {t('about.valuesTitle')} <span className="text-gradient-gold">{t('about.valuesTitleHighlight')}</span>
                     </h2>
                     <p className="text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
-                        Os pilares que guiam cada decisão e interação na Speak Online
+                        {t('about.valuesSubtitle')}
                     </p>
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                        {values.map((value, index) => (
-                            <div
-                                key={index}
-                                className="text-center p-6 rounded-2xl hover:bg-background transition-all duration-300 group"
-                                style={{ animationDelay: `${index * 100}ms` }}
-                            >
-                                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-gradient-gold group-hover:scale-110 transition-all duration-300">
-                                    <value.icon className="w-8 h-8 text-secondary group-hover:text-primary transition-colors" />
+                    <div className="flex flex-wrap justify-center gap-6">
+                        {values.map((value, index) => {
+                            const IconComponent = value.Icon;
+                            return (
+                                <div
+                                    key={index}
+                                    className="relative group cursor-pointer w-full max-w-[280px]"
+                                    onMouseEnter={() => setHoveredValue(index)}
+                                    onMouseLeave={() => setHoveredValue(null)}
+                                    style={{ animationDelay: `${index * 100}ms` }}
+                                >
+                                    <div className={`
+                    overflow-hidden rounded-2xl transition-all duration-500 
+                    hover:shadow-gold hover:scale-105
+                    bg-card flex flex-col items-center
+                  `}>
+                                        {/* Icon */}
+                                        <div className="py-8 flex items-center justify-center">
+                                            <div className="w-20 h-20 bg-gradient-gold rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                                <IconComponent className="w-10 h-10 text-primary" />
+                                            </div>
+                                        </div>
+
+                                        {/* Title */}
+                                        <div className="p-4 w-full">
+                                            <h3 className="text-lg font-bold text-foreground text-center">
+                                                {t(value.titleKey)}
+                                            </h3>
+                                        </div>
+
+                                        {/* Hover Description Overlay */}
+                                        <div className={`
+                      absolute inset-0 bg-primary/95 rounded-2xl p-6 flex items-center justify-center
+                      transition-all duration-500 ease-in-out
+                      ${hoveredValue === index ? 'opacity-100 visible' : 'opacity-0 invisible'}
+                    `}>
+                                            <div className="text-center">
+                                                <h3 className="text-xl font-bold text-secondary mb-3">
+                                                    {t(value.titleKey)}
+                                                </h3>
+                                                <p className="text-primary-foreground/90 text-sm leading-relaxed">
+                                                    {t(value.descKey)}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <h3 className="text-xl font-semibold text-foreground mb-2">{value.title}</h3>
-                                <p className="text-muted-foreground text-sm">{value.description}</p>
-                            </div>
-                        ))}
+                            );
+                        })}
                     </div>
                 </div>
             </section>
@@ -128,19 +150,19 @@ const About = () => {
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                         <div>
                             <div className="text-4xl md:text-5xl font-bold text-gradient-gold mb-2">10+</div>
-                            <p className="text-primary-foreground/80">Anos de Experiência</p>
+                            <p className="text-primary-foreground/80">{t('stats.experience')}</p>
                         </div>
                         <div>
                             <div className="text-4xl md:text-5xl font-bold text-gradient-gold mb-2">15k+</div>
-                            <p className="text-primary-foreground/80">Alunos Formados</p>
+                            <p className="text-primary-foreground/80">{t('stats.students')}</p>
                         </div>
                         <div>
                             <div className="text-4xl md:text-5xl font-bold text-gradient-gold mb-2">98%</div>
-                            <p className="text-primary-foreground/80">Satisfação</p>
+                            <p className="text-primary-foreground/80">{t('stats.satisfaction')}</p>
                         </div>
                         <div>
                             <div className="text-4xl md:text-5xl font-bold text-gradient-gold mb-2">50+</div>
-                            <p className="text-primary-foreground/80">Professores</p>
+                            <p className="text-primary-foreground/80">{t('stats.teachers')}</p>
                         </div>
                     </div>
                 </div>

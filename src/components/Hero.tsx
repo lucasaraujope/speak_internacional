@@ -61,8 +61,14 @@ const Hero = () => {
                         </h1>
 
                         <p className="text-xl mb-8 text-primary-foreground/90 leading-relaxed">
-                            Metodologia moderna e professores especializados para profissionais que
-                            querem resultados reais. Aprenda inglês com quem entende sua carreira.
+                            Falar inglês muda destinos.
+                            Abre portas, cria oportunidades, conecta pessoas e transforma vidas.
+                            E é exatamente por isso que a Speak Online existe.
+                        </p>
+                        <p className="text-xl mb-8 text-primary-foreground/90 leading-relaxed">
+                            Acreditamos que fluência não acontece em silêncio.
+                            Ela nasce da prática, da coragem de tentar, da orientação certa e de um ambiente que acolhe, inspira e desenvolve.
+                            Aqui, cada aula é construída para que você fale, pense e sinta o inglês com naturalidade.
                         </p>
 
                         <div className="flex flex-wrap gap-6 mb-8">

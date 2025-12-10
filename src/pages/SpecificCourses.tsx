@@ -217,50 +217,7 @@ const SpecificCourses = () => {
                 className={`py-20 bg-muted/30 transition-all duration-1000 ${workshopsReveal.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                     }`}
             >
-                <div className="container mx-auto px-4">
-                    <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
-                        Workshops <span className="text-gradient-gold">Ao Vivo</span>
-                    </h2>
-                    <p className="text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
-                        Sessões intensivas com interação em tempo real e vagas limitadas
-                    </p>
-
-                    <div className="grid md:grid-cols-3 gap-8">
-                        {workshops.map((workshop, index) => (
-                            <div
-                                key={index}
-                                className="glass-card p-6 rounded-2xl hover:shadow-gold transition-all duration-300 group border border-border"
-                            >
-                                <div className="flex items-center gap-2 text-secondary text-sm font-medium mb-4">
-                                    <Clock className="w-4 h-4" />
-                                    {workshop.date} às {workshop.time}
-                                </div>
-
-                                <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-secondary transition-colors">
-                                    {workshop.title}
-                                </h3>
-
-                                <p className="text-muted-foreground text-sm mb-4">
-                                    Duração: {workshop.duration} • Instrutor: {workshop.instructor}
-                                </p>
-
-                                <div className="flex items-center justify-between pt-4 border-t border-border">
-                                    <span className="text-sm text-muted-foreground">
-                                        <span className="text-secondary font-bold">{workshop.spots}</span> vagas restantes
-                                    </span>
-                                    <Button
-                                        variant="outline"
-                                        size="sm"
-                                        className="border-secondary text-secondary hover:bg-secondary hover:text-primary"
-                                        onClick={() => openWorkshopWhatsApp(workshop.title)}
-                                    >
-                                        Reservar <ArrowRight className="w-4 h-4 ml-1" />
-                                    </Button>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
+                
             </section>
 
             {/* CTA */}

@@ -2,8 +2,10 @@ import { useState, useEffect } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router-dom";
-{/*import logoFundoEscuro from "../assets/"
-import logoFundoClaro from "@/assets/logo-azul.png";*/}
+{/*import logoFundoEscuro from "";
+import logoFundoClaro from "@/assets/logo-fundo-claro.jpg";*/}
+import LanguageSelector from "./LanguageSelector";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Navigation = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -11,6 +13,7 @@ const Navigation = () => {
     const [isCoursesOpen, setIsCoursesOpen] = useState(false);
     const location = useLocation();
     const isHomePage = location.pathname === "/";
+    const { t } = useLanguage();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -32,11 +35,6 @@ const Navigation = () => {
         }
     };
 
-    const navLinks = [
-        { label: "Início", href: "/", isScroll: true, scrollId: "inicio" },
-        { label: "Sobre", href: "/sobre" },
-    ];
-
     return (
         <nav
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-background/95 backdrop-blur-md shadow-md" : "bg-transparent"
@@ -45,7 +43,7 @@ const Navigation = () => {
             <div className="container mx-auto px-4">
                 <div className="flex items-center justify-between h-20">
                     <Link to="/" className="flex items-center space-x-2">
-                        {/*<img
+                        {/* <img
                             src={isScrolled ? logoFundoClaro : logoFundoEscuro}
                             alt="Speak Online Internacional"
                             className="h-12 w-auto"
@@ -54,26 +52,19 @@ const Navigation = () => {
 
                     {/* Desktop Menu */}
                     <div className="hidden md:flex items-center space-x-6">
-                        {navLinks.map((link) => (
-                            link.isScroll ? (
-                                <button
-                                    key={link.label}
-                                    onClick={() => scrollToSection(link.scrollId!)}
-                                    className={`${isScrolled ? "text-primary" : "text-white"} hover:text-secondary smooth-transition font-medium`}
-                                >
-                                    {link.label}
-                                </button>
-                            ) : (
-                                <Link
-                                    key={link.label}
-                                    to={link.href!}
-                                    className={`${isScrolled ? "text-primary" : "text-white"} hover:text-secondary smooth-transition font-medium ${location.pathname === link.href ? "text-secondary" : ""
-                                        }`}
-                                >
-                                    {link.label}
-                                </Link>
-                            )
-                        ))}
+                        <button
+                            onClick={() => scrollToSection("inicio")}
+                            className={`${isScrolled ? "text-primary" : "text-white"} hover:text-secondary smooth-transition font-medium`}
+                        >
+                            {t('nav.home')}
+                        </button>
+                        <Link
+                            to="/sobre"
+                            className={`${isScrolled ? "text-primary" : "text-white"} hover:text-secondary smooth-transition font-medium ${location.pathname === "/sobre" ? "text-secondary" : ""
+                                }`}
+                        >
+                            {t('nav.about')}
+                        </Link>
 
                         {/* Cursos Dropdown */}
                         <div className="relative">
@@ -82,7 +73,7 @@ const Navigation = () => {
                                 onBlur={() => setTimeout(() => setIsCoursesOpen(false), 150)}
                                 className={`flex items-center gap-1 ${isScrolled ? "text-primary" : "text-white"} hover:text-secondary smooth-transition font-medium`}
                             >
-                                Cursos <ChevronDown className={`w-4 h-4 transition-transform ${isCoursesOpen ? "rotate-180" : ""}`} />
+                                {t('nav.courses')} <ChevronDown className={`w-4 h-4 transition-transform ${isCoursesOpen ? "rotate-180" : ""}`} />
                             </button>
                             {isCoursesOpen && (
                                 <div className="absolute top-full left-0 mt-2 w-48 bg-background border border-border rounded-lg shadow-lg overflow-hidden animate-fade-in">
@@ -90,19 +81,19 @@ const Navigation = () => {
                                         onClick={() => { scrollToSection("cursos"); setIsCoursesOpen(false); }}
                                         className="block w-full text-left px-4 py-3 text-foreground hover:bg-muted hover:text-secondary transition-colors"
                                     >
-                                        Cursos Principais
+                                        {t('nav.mainCourses')}
                                     </button>
                                     <Link
                                         to="/cursos-especificos"
                                         className="block px-4 py-3 text-foreground hover:bg-muted hover:text-secondary transition-colors"
                                     >
-                                        Cursos Específicos
+                                        {t('nav.specificCourses')}
                                     </Link>
                                     <Link
                                         to="/ingles-para-empresas"
                                         className="block px-4 py-3 text-foreground hover:bg-muted hover:text-secondary transition-colors"
                                     >
-                                        Inglês para Empresas
+                                        {t('nav.corporateEnglish')}
                                     </Link>
                                 </div>
                             )}
@@ -112,15 +103,17 @@ const Navigation = () => {
                             onClick={() => scrollToSection("planos")}
                             className={`${isScrolled ? "text-primary" : "text-white"} hover:text-secondary smooth-transition font-medium`}
                         >
-                            Planos
+                            {t('nav.plans')}
                         </button>
 
                         <Button
                             onClick={() => scrollToSection("contato")}
                             className="bg-gradient-gold text-primary-foreground hover:shadow-gold"
                         >
-                            Solicitar Orçamento
+                            {t('nav.requestQuote')}
                         </Button>
+
+                        <LanguageSelector isScrolled={isScrolled} />
                     </div>
 
                     {/* Mobile Menu Button */}
@@ -135,51 +128,54 @@ const Navigation = () => {
                 {/* Mobile Menu */}
                 {isMobileMenuOpen && (
                     <div className="md:hidden py-4 space-y-2 bg-background border-t animate-fade-in">
+                        <div className="flex justify-center py-2">
+                            <LanguageSelector />
+                        </div>
                         <button
                             onClick={() => scrollToSection("inicio")}
                             className="block w-full text-left px-4 py-3 text-foreground hover:bg-muted"
                         >
-                            Início
+                            {t('nav.home')}
                         </button>
                         <Link
                             to="/sobre"
                             className="block px-4 py-3 text-foreground hover:bg-muted"
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
-                            Sobre
+                            {t('nav.about')}
                         </Link>
                         <button
                             onClick={() => scrollToSection("cursos")}
                             className="block w-full text-left px-4 py-3 text-foreground hover:bg-muted"
                         >
-                            Cursos Principais
+                            {t('nav.mainCourses')}
                         </button>
                         <Link
                             to="/cursos-especificos"
                             className="block px-4 py-3 text-foreground hover:bg-muted"
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
-                            Cursos Específicos
+                            {t('nav.specificCourses')}
                         </Link>
                         <Link
                             to="/ingles-para-empresas"
                             className="block px-4 py-3 text-foreground hover:bg-muted"
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
-                            Inglês para Empresas
+                            {t('nav.corporateEnglish')}
                         </Link>
                         <button
                             onClick={() => scrollToSection("planos")}
                             className="block w-full text-left px-4 py-3 text-foreground hover:bg-muted"
                         >
-                            Planos
+                            {t('nav.plans')}
                         </button>
                         <div className="px-4 pt-2">
                             <Button
                                 onClick={() => scrollToSection("contato")}
                                 className="w-full bg-gradient-gold text-primary-foreground"
                             >
-                                Solicitar Orçamento
+                                {t('nav.requestQuote')}
                             </Button>
                         </div>
                     </div>

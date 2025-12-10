@@ -58,6 +58,13 @@ const videoTestimonials = [
         videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
         duration: "3:12",
     },
+    {
+        name: "Luciana Ferreira",
+        role: "Sales Director",
+        thumbnail: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=225&fit=crop",
+        videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        duration: "2:58",
+    },
 ];
 
 const Testimonials = () => {
@@ -81,7 +88,7 @@ const Testimonials = () => {
                     <h3 className="text-2xl font-bold text-center mb-8 text-foreground">
                         Depoimentos em <span className="text-gradient-gold">Vídeo</span>
                     </h3>
-                    <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                    <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
                         {videoTestimonials.map((video, index) => (
                             <div
                                 key={index}
