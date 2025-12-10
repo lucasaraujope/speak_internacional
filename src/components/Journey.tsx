@@ -35,7 +35,8 @@ const journeySteps = [
 
 const Journey = () => {
     const openWhatsApp = () => {
-        window.open("https://wa.me/5511999999999?text=Olá! Quero começar minha jornada de aprendizado de inglês.", "_blank");
+        const message = encodeURIComponent("Olá! Quero começar minha jornada de aprendizado de inglês.");
+        window.open(`https://wa.me/5512991298390?text=${message}`, "_blank");
     };
 
     return (

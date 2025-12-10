@@ -19,7 +19,7 @@ const faqs = [
   {
     question: "Os professores são nativos?",
     answer:
-      "Não trabalhamos com professores nativos somente com brasileiros, porém eles possuem certificações internacionais (CELTA, TESOL, Cambridge). Todos com vasta e passam por rigoroso processo de seleção.",
+      "Trabalhamos com professores nativos e brasileiros com certificações internacionais (CELTA, TESOL, Cambridge). Todos têm experiência em inglês corporativo e passam por rigoroso processo de seleção.",
   },
   {
     question: "Posso mudar de plano depois?",
@@ -29,17 +29,22 @@ const faqs = [
   {
     question: "Como são as aulas? Individuais ou em grupo?",
     answer:
-      "Hoje a nós não oferecemos aulas em grupo somente individuais. Assim garantimos um experiência unica para cada aluno.",
+      "Oferecemos ambos formatos. As aulas principais são em pequenos grupos (máx. 6 alunos) para garantir atenção individualizada. Planos superiores incluem aulas particulares e sessões de coaching personalizadas.",
+  },
+  {
+    question: "Vocês oferecem certificado?",
+    answer:
+      "Sim, oferecemos certificado de conclusão de cada nível. Além disso, preparamos alunos para certificações internacionais como TOEFL, IELTS e Cambridge (custo da prova não incluso).",
   },
   {
     question: "E se eu perder uma aula?",
     answer:
-      "Com até 24h de antecedência sem custos adicionais. Temos horários flexíveis de manhã, tarde e noite.",
+      "Todas as aulas ficam gravadas na plataforma por 30 dias. Você também pode reagendar com até 24h de antecedência sem custos adicionais. Temos horários flexíveis de manhã, tarde e noite.",
   },
   {
     question: "Qual a política de cancelamento?",
     answer:
-      "Nós não prendemos o aluno ou seu cartão em mensalidades ou fidelidade, assim o mês que você paga você estudo, se não pagar não estuda",
+      "Oferecemos garantia de 7 dias. Se não ficar satisfeito, devolvemos seu investimento integralmente. Após esse período, você pode cancelar a qualquer momento, sem multas ou taxas de cancelamento.",
   },
 ];
 

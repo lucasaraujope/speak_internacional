@@ -1,4 +1,5 @@
 import { Facebook, Instagram, Linkedin, Youtube, Mail, Phone, MapPin } from "lucide-react";
+import logoFundoEscuro from "@/assets/logo-fundo-escuro.png";
 
 const Footer = () => {
     const currentYear = new Date().getFullYear();
@@ -9,9 +10,11 @@ const Footer = () => {
                 <div className="grid md:grid-cols-4 gap-8 mb-12">
                     {/* Brand Column */}
                     <div>
-                        <div className="text-2xl font-bold mb-4">
-                            Speak <span className="text-gradient-gold">Online</span>
-                        </div>
+                        <img
+                            src={logoFundoEscuro}
+                            alt="Speak Online Internacional"
+                            className="h-12 w-auto mb-4"
+                        />
                         <p className="text-primary-foreground/80 text-sm leading-relaxed">
                             Transformando carreiras através da fluência em inglês. Metodologia moderna para
                             profissionais que buscam resultados.

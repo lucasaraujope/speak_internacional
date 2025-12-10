@@ -1,15 +1,13 @@
 import { MessageCircle, X } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { getWhatsAppUrl } from "@/utils/whatsapp";
 
 const WhatsAppButton = () => {
     const [isExpanded, setIsExpanded] = useState(false);
 
     const handleWhatsAppClick = () => {
-        const message = encodeURIComponent(
-            "Olá! Gostaria de saber mais sobre os cursos da Speak Online Internacional."
-        );
-        window.open(`https://wa.me/5511999999999?text=${message}`, "_blank");
+        window.open(getWhatsAppUrl("os cursos da Speak Online Internacional"), "_blank");
     };
 
     return (

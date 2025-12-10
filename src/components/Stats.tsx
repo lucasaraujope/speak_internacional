@@ -85,7 +85,7 @@ const AnimatedCounter = ({
     }, [end, duration, isVisible]);
 
     return (
-        <span ref={countRef} className="text-5xl font-bold white-text">
+        <span ref={countRef} className="text-5xl font-bold text-white">
             {count.toFixed(decimals)}
         </span>
     );

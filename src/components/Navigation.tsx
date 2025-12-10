@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router-dom";
-{/*import logoFundoEscuro from "";
-import logoFundoClaro from "@/assets/logo-fundo-claro.jpg";*/}
+import logoFundoEscuro from "@/assets/logo-fundo-escuro.png";
+import logoFundoClaro from "@/assets/logo-fundo-claro.jpg";
 import LanguageSelector from "./LanguageSelector";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -43,11 +43,11 @@ const Navigation = () => {
             <div className="container mx-auto px-4">
                 <div className="flex items-center justify-between h-20">
                     <Link to="/" className="flex items-center space-x-2">
-                        {/* <img
+                        <img
                             src={isScrolled ? logoFundoClaro : logoFundoEscuro}
                             alt="Speak Online Internacional"
                             className="h-12 w-auto"
-                        />*/}
+                        />
                     </Link>
 
                     {/* Desktop Menu */}

@@ -27,13 +27,11 @@ const CorporateEnglish = () => {
     const processReveal = useScrollReveal();
 
     const openWhatsApp = (packageName: string) => {
-        const message = encodeURIComponent(`Olá! Eu gostaria de saber mais sobre o pacote empresarial "${packageName}" para minha empresa.`);
-        window.open(`https://wa.me/5512991298390?text=${message}`, "_blank");
+        window.open(`https://wa.me/5512991298390?text=${encodeURIComponent(`Olá! Eu vim através do site e quero informações sobre o curso de Inglês Empresarial | Pacote ${packageName}`)}`, "_blank");
     };
 
     const openGeneralWhatsApp = () => {
-        const message = encodeURIComponent("Olá! Gostaria de saber mais sobre os pacotes de inglês para empresas.");
-        window.open(`https://wa.me/5512991298390?text=${message}`, "_blank");
+        window.open(`https://wa.me/5512991298390?text=${encodeURIComponent("Olá! Eu vim através do site e quero informações sobre o curso de Inglês para Empresas")}`, "_blank");
     };
 
     const benefits = [
