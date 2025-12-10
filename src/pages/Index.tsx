@@ -9,6 +9,7 @@ import Footer from "@/components/Footer";
 import Stats from "@/components/Stats";
 import ScrollProgress from "@/components/ScrollProgress";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import Countries from "@/components/Countries";
 
 const Index = () => {
     return (
@@ -17,6 +18,7 @@ const Index = () => {
             <Navigation />
             <Hero />
             <Courses />
+            <Countries />
             <Stats />
             <Journey />
             <Testimonials />
