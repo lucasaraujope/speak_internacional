@@ -19,6 +19,11 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import corporateHeroSlide from "@/assets/corporate-hero-slide.jpg";
 
 const CorporateEnglish = () => {
     const heroReveal = useScrollReveal();
@@ -59,46 +64,40 @@ const CorporateEnglish = () => {
 
     const packages = [
         {
-            name: "Starter",
-            description: "Ideal para pequenas equipes",
-            employees: "Até 10 colaboradores",
+            name: "Sprint",
+            description: "Imersão rápida para acelerar sua fala",
+            employees: "12h para Falar Inglês",
             features: [
-                "Aulas em grupo (máx. 5 alunos)",
-                "2 aulas semanais por grupo",
-                "Material didático incluso",
-                "Relatórios mensais de progresso",
-                "Suporte por e-mail",
+                "4 horas mensais – 2 aulas ao vivo de 30 min por semana",
+                "Acesso ilimitado à plataforma de vídeo aulas",
+                "Material sem custo adicional - incluso no plano",
+                "Garantia Tríplice Exclusiva",
             ],
             popular: false,
         },
         {
-            name: "Business",
-            description: "Mais popular entre empresas",
-            employees: "11 a 30 colaboradores",
+            name: "Gold",
+            description: "Evolução consistente com mais prática guiada",
+            employees: "24h para Falar Inglês",
             features: [
-                "Aulas em grupo ou individuais",
-                "3 aulas semanais por grupo",
-                "Material didático premium",
-                "Workshops mensais temáticos",
-                "Relatórios quinzenais",
-                "Gestor de conta dedicado",
-                "Suporte prioritário",
+                "8 horas mensais – 4 aulas ao vivo de 30 min por semana",
+                "Acesso ilimitado à plataforma de vídeo aulas",
+                "3 aulas semanais de 45 minutos com o Nagibe, professor e CEO da Speak, ao vivo",
+                "Material sem custo adicional - incluso no plano",
+                "Garantia Tríplice Exclusiva",
             ],
             popular: true,
         },
         {
-            name: "Enterprise",
-            description: "Para grandes corporações",
-            employees: "30+ colaboradores",
+            name: "Premium",
+            description: "Alta performance para quem quer avançar no máximo nível",
+            employees: "30h para Falar Inglês",
             features: [
-                "Programa 100% personalizado",
-                "Aulas ilimitadas",
-                "Material exclusivo da empresa",
-                "Imersões e eventos especiais",
-                "Dashboard de acompanhamento",
-                "Múltiplos gestores de conta",
-                "Suporte 24/7",
-                "Certificações internacionais",
+                "10 horas mensais – 5 aulas ao vivo de 30 min por semana",
+                "Todos os benefícios dos Planos Sprint e Gold",
+                "Diagnóstico Linguístico Inicial",
+                "Mentoria e Plano de Crescimento on demand",
+                "Garantia Tríplice Exclusiva",
             ],
             popular: false,
         },
@@ -132,65 +131,37 @@ const CorporateEnglish = () => {
             <ScrollProgress />
             <Navigation />
 
-            {/* Hero Section */}
+            {/* Hero Section with Swiper */}
             <section
                 ref={heroReveal.ref as React.RefObject<HTMLElement>}
-                className={`pt-32 pb-20 bg-gradient-to-br from-primary via-primary/95 to-primary/90 transition-all duration-1000 ${heroReveal.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+                className={`pt-20 transition-all duration-1000 ${heroReveal.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                     }`}
             >
-                <div className="container mx-auto px-4">
-                    <div className="grid lg:grid-cols-2 gap-12 items-center">
-                        <div className="text-primary-foreground">
-                            <div className="inline-flex items-center gap-2 bg-secondary/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
-                                <Building2 className="w-4 h-4 text-secondary" />
-                                <span className="text-sm font-medium text-secondary">
-                                    Soluções Corporativas
-                                </span>
-                            </div>
-
-                            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                                Inglês para <span className="text-gradient-gold">Empresas</span>
-                            </h1>
-
-                            <p className="text-xl text-primary-foreground/80 mb-8">
-                                Capacite sua equipe com fluência em inglês e impulsione os resultados do seu negócio.
-                                Programas personalizados para empresas de todos os tamanhos.
-                            </p>
-
-                            <div className="flex flex-wrap gap-4">
+                <Swiper
+                    modules={[Autoplay, Pagination]}
+                    autoplay={{ delay: 5000, disableOnInteraction: false }}
+                    pagination={{ clickable: true }}
+                    loop={true}
+                    className="w-full"
+                >
+                    <SwiperSlide>
+                        <div className="relative w-full flex flex-col">
+                            <img
+                                src={corporateHeroSlide}
+                                alt="Speak Online International - English in Company"
+                                className="w-full h-auto object-cover"
+                            />
+                            <div className="py-6 bg-primary flex justify-center md:absolute md:bottom-6 md:left-1/2 md:transform md:-translate-x-1/2 md:bg-transparent md:py-0">
                                 <Button
                                     onClick={openGeneralWhatsApp}
-                                    className="bg-gradient-gold text-primary hover:shadow-gold text-lg px-8 py-6"
+                                    className="bg-gradient-gold text-primary hover:shadow-gold text-lg px-8 py-6 shadow-lg"
                                 >
                                     Solicitar Proposta
                                 </Button>
                             </div>
                         </div>
-
-                        <div className="hidden lg:grid grid-cols-2 gap-4">
-                            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 flex flex-col items-center text-center">
-                                <Users className="w-12 h-12 text-secondary mb-3" />
-                                <div className="text-3xl font-bold text-primary-foreground">500+</div>
-                                <div className="text-primary-foreground/80 text-sm">Empresas atendidas</div>
-                            </div>
-                            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 flex flex-col items-center text-center">
-                                <Award className="w-12 h-12 text-secondary mb-3" />
-                                <div className="text-3xl font-bold text-primary-foreground">98%</div>
-                                <div className="text-primary-foreground/80 text-sm">Taxa de satisfação</div>
-                            </div>
-                            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 flex flex-col items-center text-center">
-                                <TrendingUp className="w-12 h-12 text-secondary mb-3" />
-                                <div className="text-3xl font-bold text-primary-foreground">3x</div>
-                                <div className="text-primary-foreground/80 text-sm">Mais produtividade</div>
-                            </div>
-                            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 flex flex-col items-center text-center">
-                                <Globe className="w-12 h-12 text-secondary mb-3" />
-                                <div className="text-3xl font-bold text-primary-foreground">15+</div>
-                                <div className="text-primary-foreground/80 text-sm">Anos de experiência</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    </SwiperSlide>
+                </Swiper>
             </section>
 
             {/* Benefits Section */}
@@ -258,7 +229,7 @@ const CorporateEnglish = () => {
                                     <CardTitle className="text-2xl mb-2">{pkg.name}</CardTitle>
                                     <CardDescription>{pkg.description}</CardDescription>
                                     <div className="flex items-center justify-center gap-2 mt-4">
-                                        <Users className="w-5 h-5 text-secondary" />
+                                        <Clock className="w-5 h-5 text-secondary" />
                                         <span className="text-foreground font-medium">{pkg.employees}</span>
                                     </div>
                                 </CardHeader>

@@ -2,7 +2,7 @@ import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import Courses from "@/components/Courses";
 import Journey from "@/components/Journey";
-import Testimonials from "../components/Testimonials";
+import Testimonials from "@/components/Testimonials";
 import Pricing from "@/components/Pricing";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";

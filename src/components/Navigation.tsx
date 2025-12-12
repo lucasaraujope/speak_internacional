@@ -13,6 +13,7 @@ const Navigation = () => {
     const [isCoursesOpen, setIsCoursesOpen] = useState(false);
     const location = useLocation();
     const isHomePage = location.pathname === "/";
+    const isCorporatePage = location.pathname === "/ingles-para-empresas";
     const { t } = useLanguage();
 
     useEffect(() => {
@@ -35,32 +36,52 @@ const Navigation = () => {
         }
     };
 
+    // Define background and text colors based on scroll state and page
+    const navBgClass = isCorporatePage
+        ? isScrolled
+            ? "bg-background/95 backdrop-blur-md shadow-md"
+            : "bg-primary shadow-md"
+        : isScrolled
+            ? "bg-background/95 backdrop-blur-md shadow-md"
+            : "bg-transparent";
+
+    const textClass = isCorporatePage
+        ? isScrolled
+            ? "text-primary hover:text-secondary"
+            : "text-primary-foreground hover:text-secondary"
+        : isScrolled
+            ? "text-primary hover:text-secondary"
+            : "text-white hover:text-secondary";
+
+    // Logo logic: on corporate page, use dark logo when scrolled, light logo otherwise
+    const logoSrc = isCorporatePage
+        ? isScrolled ? logoFundoClaro : logoFundoEscuro
+        : isScrolled ? logoFundoClaro : logoFundoEscuro;
+
     return (
         <nav
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-background/95 backdrop-blur-md shadow-md" : "bg-transparent"
-                }`}
+            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${navBgClass}`}
         >
             <div className="container mx-auto px-4">
                 <div className="flex items-center justify-between h-20">
                     <Link to="/" className="flex items-center space-x-2">
                         <img
-                            src={isScrolled ? logoFundoClaro : logoFundoEscuro}
+                            src={logoSrc}
                             alt="Speak Online Internacional"
                             className="h-12 w-auto"
                         />
                     </Link>
 
-                    {/* Desktop Menu */}
                     <div className="hidden md:flex items-center space-x-6">
                         <button
                             onClick={() => scrollToSection("inicio")}
-                            className={`${isScrolled ? "text-primary" : "text-white"} hover:text-secondary smooth-transition font-medium`}
+                            className={`${textClass} smooth-transition font-medium`}
                         >
                             {t('nav.home')}
                         </button>
                         <Link
                             to="/sobre"
-                            className={`${isScrolled ? "text-primary" : "text-white"} hover:text-secondary smooth-transition font-medium ${location.pathname === "/sobre" ? "text-secondary" : ""
+                            className={`${textClass} smooth-transition font-medium ${location.pathname === "/sobre" ? "text-secondary" : ""
                                 }`}
                         >
                             {t('nav.about')}
@@ -71,7 +92,7 @@ const Navigation = () => {
                             <button
                                 onClick={() => setIsCoursesOpen(!isCoursesOpen)}
                                 onBlur={() => setTimeout(() => setIsCoursesOpen(false), 150)}
-                                className={`flex items-center gap-1 ${isScrolled ? "text-primary" : "text-white"} hover:text-secondary smooth-transition font-medium`}
+                                className={`flex items-center gap-1 ${textClass} smooth-transition font-medium`}
                             >
                                 {t('nav.courses')} <ChevronDown className={`w-4 h-4 transition-transform ${isCoursesOpen ? "rotate-180" : ""}`} />
                             </button>
@@ -101,7 +122,7 @@ const Navigation = () => {
 
                         <button
                             onClick={() => scrollToSection("planos")}
-                            className={`${isScrolled ? "text-primary" : "text-white"} hover:text-secondary smooth-transition font-medium`}
+                            className={`${textClass} smooth-transition font-medium`}
                         >
                             {t('nav.plans')}
                         </button>
@@ -118,7 +139,7 @@ const Navigation = () => {
 
                     {/* Mobile Menu Button */}
                     <button
-                        className={`md:hidden ${isScrolled ? "text-primary" : "text-white"} hover:text-secondary smooth-transition`}
+                        className={`md:hidden ${textClass} smooth-transition`}
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                     >
                         {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
