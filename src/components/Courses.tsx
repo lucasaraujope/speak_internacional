@@ -40,10 +40,10 @@ const Courses = () => {
     ];
 
     return (
-        <section id="cursos" className="py-24 bg-muted/30">
+        <section id="cursos" className="py-24 bg-muted/30" aria-labelledby="courses-heading">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-16 animate-fade-in">
-                    <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
+                    <h2 id="courses-heading" className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
                         {t('courses.title')} <span className="text-gradient-gold">{t('courses.titleHighlight')}</span>
                     </h2>
                     <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -51,37 +51,42 @@ const Courses = () => {
                     </p>
                 </div>
 
-                <div ref={ref} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <ul ref={ref as unknown as React.RefObject<HTMLUListElement>} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 list-none" role="list" aria-label="Lista de cursos disponíveis">
                     {courses.map((course, index) => (
-                        <Card
-                            key={index}
-                            onClick={() => openWhatsApp(course.courseName)}
-                            className={`hover:shadow-card-hover smooth-transition cursor-pointer group border-border hover:-translate-y-2 ${isVisible ? "animate-slide-up" : "opacity-0"
-                                }`}
-                            style={{ animationDelay: `${index * 100}ms` }}
-                        >
-                            <CardHeader>
-                                <div className="w-16 h-16 rounded-xl bg-gradient-gold flex items-center justify-center mb-4 group-hover:shadow-gold smooth-transition group-hover:rotate-6">
-                                    <course.icon className="w-8 h-8 text-primary group-hover:scale-110 smooth-transition" />
-                                </div>
-                                <CardTitle className="text-xl text-card-foreground">{t(course.titleKey)}</CardTitle>
-                                <CardDescription className="text-muted-foreground">
-                                    {t(course.descKey)}
-                                </CardDescription>
-                            </CardHeader>
-                            <CardContent>
-                                <ul className="space-y-2">
-                                    {course.features.map((feature, i) => (
-                                        <li key={i} className="flex items-center text-sm text-card-foreground">
-                                            <span className="w-1.5 h-1.5 rounded-full bg-secondary mr-2"></span>
-                                            {feature}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </CardContent>
-                        </Card>
+                        <li key={index}>
+                            <Card
+                                onClick={() => openWhatsApp(course.courseName)}
+                                onKeyDown={(e) => e.key === 'Enter' && openWhatsApp(course.courseName)}
+                                tabIndex={0}
+                                role="button"
+                                aria-label={`Saber mais sobre o curso de ${t(course.titleKey)}`}
+                                className={`hover:shadow-card-hover smooth-transition cursor-pointer group border-border hover:-translate-y-2 focus:ring-2 focus:ring-secondary focus:outline-none ${isVisible ? "animate-slide-up" : "opacity-0"
+                                    }`}
+                                style={{ animationDelay: `${index * 100}ms` }}
+                            >
+                                <CardHeader>
+                                    <div className="w-16 h-16 rounded-xl bg-gradient-gold flex items-center justify-center mb-4 group-hover:shadow-gold smooth-transition group-hover:rotate-6" aria-hidden="true">
+                                        <course.icon className="w-8 h-8 text-primary group-hover:scale-110 smooth-transition" aria-hidden="true" />
+                                    </div>
+                                    <CardTitle className="text-xl text-card-foreground">{t(course.titleKey)}</CardTitle>
+                                    <CardDescription className="text-muted-foreground">
+                                        {t(course.descKey)}
+                                    </CardDescription>
+                                </CardHeader>
+                                <CardContent>
+                                    <ul className="space-y-2" aria-label={`Recursos do curso ${t(course.titleKey)}`}>
+                                        {course.features.map((feature, i) => (
+                                            <li key={i} className="flex items-center text-sm text-card-foreground">
+                                                <span className="w-1.5 h-1.5 rounded-full bg-secondary mr-2" aria-hidden="true"></span>
+                                                {feature}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </CardContent>
+                            </Card>
+                        </li>
                     ))}
-                </div>
+                </ul>
             </div>
         </section>
     );

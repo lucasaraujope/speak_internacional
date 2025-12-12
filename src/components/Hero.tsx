@@ -33,15 +33,17 @@ const Hero = () => {
   };
 
   return (
-    <section id="inicio" className="relative min-h-screen flex items-center pt-20 overflow-hidden">
+    <header id="inicio" className="relative min-h-screen flex items-center pt-20 overflow-hidden" role="banner" aria-label="Seção principal">
       {/* Background with gradient overlay and parallax */}
-      <div className="absolute inset-0 bg-gradient-hero">
+      <div className="absolute inset-0 bg-gradient-hero" aria-hidden="true">
         <div className="absolute inset-0 bg-black/40"></div>
         <img
           src={heroImage}
-          alt="Professional team learning English online"
+          alt=""
+          aria-hidden="true"
           className="w-full h-full object-cover mix-blend-overlay opacity-30"
           style={{ transform: `translateY(${scrollY * 0.5}px)` }}
+          loading="eager"
         />
       </div>
 
@@ -51,7 +53,7 @@ const Hero = () => {
           {/* Left Column - Text */}
           <div className="text-primary-foreground animate-fade-in">
             <div className="inline-flex items-center gap-2 bg-secondary/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
-              <Award className="w-4 h-4 text-secondary" />
+              <Award className="w-4 h-4 text-secondary" aria-hidden="true" />
               <span className="text-sm font-medium text-secondary">
                 Referência em Inglês Profissional
               </span>
@@ -67,9 +69,9 @@ const Hero = () => {
               querem resultados reais. Aprenda inglês com quem entende sua carreira.
             </p>
 
-            <div className="flex flex-wrap gap-6 mb-8">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-secondary/20 backdrop-blur-sm flex items-center justify-center">
+            <div className="flex flex-wrap gap-6 mb-8" role="list" aria-label="Benefícios principais">
+              <div className="flex items-center gap-3" role="listitem">
+                <div className="w-12 h-12 rounded-full bg-secondary/20 backdrop-blur-sm flex items-center justify-center" aria-hidden="true">
                   <Globe className="w-6 h-6 text-secondary" />
                 </div>
                 <div>
@@ -80,8 +82,8 @@ const Hero = () => {
                 </div>
               </div>
 
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-secondary/20 backdrop-blur-sm flex items-center justify-center">
+              <div className="flex items-center gap-3" role="listitem">
+                <div className="w-12 h-12 rounded-full bg-secondary/20 backdrop-blur-sm flex items-center justify-center" aria-hidden="true">
                   <TrendingUp className="w-6 h-6 text-secondary" />
                 </div>
                 <div>
@@ -95,60 +97,66 @@ const Hero = () => {
           </div>
 
           {/* Right Column - Form */}
-          <div className="animate-scale-in">
+          <aside className="animate-scale-in" aria-label="Formulário de orçamento">
             <div className="bg-card rounded-2xl shadow-2xl p-8 backdrop-blur-sm">
-              <h3 className="text-2xl font-bold mb-2 text-card-foreground">
+              <h2 className="text-2xl font-bold mb-2 text-card-foreground">
                 Solicite um Orçamento
-              </h3>
+              </h2>
               <p className="text-muted-foreground mb-6">
                 Descubra o plano ideal para seus objetivos
               </p>
 
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-4" aria-label="Formulário de solicitação de orçamento">
                 <div>
-                  <label className="block text-sm font-medium mb-2 text-card-foreground">
+                  <label htmlFor="hero-name" className="block text-sm font-medium mb-2 text-card-foreground">
                     Nome completo
                   </label>
                   <Input
+                    id="hero-name"
                     type="text"
                     placeholder="Seu nome"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     required
                     className="bg-background border-input"
+                    aria-required="true"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2 text-card-foreground">
+                  <label htmlFor="hero-email" className="block text-sm font-medium mb-2 text-card-foreground">
                     E-mail
                   </label>
                   <Input
+                    id="hero-email"
                     type="email"
                     placeholder="seu@email.com"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     required
                     className="bg-background border-input"
+                    aria-required="true"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2 text-card-foreground">
+                  <label htmlFor="hero-goal" className="block text-sm font-medium mb-2 text-card-foreground">
                     Seu objetivo com o inglês
                   </label>
                   <Textarea
+                    id="hero-goal"
                     placeholder="Ex: Melhorar comunicação em reuniões, preparar para entrevista..."
                     value={formData.goal}
                     onChange={(e) => setFormData({ ...formData, goal: e.target.value })}
                     required
                     className="bg-background border-input min-h-[100px]"
+                    aria-required="true"
                   />
                 </div>
 
                 <Button
                   type="submit"
-                  className="w-full bg-gradient-gold text-primary-foreground hover:shadow-gold text-lg py-6"
+                  className="w-full bg-gradient-gold text-primary-foreground hover:shadow-gold text-lg py-6 focus:ring-2 focus:ring-secondary focus:ring-offset-2"
                 >
                   Receber Proposta Personalizada
                 </Button>
@@ -158,10 +166,10 @@ const Hero = () => {
                 </p>
               </form>
             </div>
-          </div>
+          </aside>
         </div>
       </div>
-    </section>
+    </header>
   );
 };
 
