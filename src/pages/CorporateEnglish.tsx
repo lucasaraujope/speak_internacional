@@ -186,8 +186,12 @@ const CorporateEnglish = () => {
                             <img
                                 src={corporateHeroSlide}
                                 alt="Equipe profissional em reunião de negócios discutindo em inglês - Treinamento corporativo Speak Online Internacional"
+                                width={1920}
+                                height={1080}
                                 className="w-full h-auto object-cover"
                                 loading="eager"
+                                fetchPriority="high"
+                                decoding="async"
                             />
                             <figcaption className="sr-only">
                                 Treinamento de inglês corporativo para equipes empresariais

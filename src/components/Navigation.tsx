@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router-dom";
-import logoFundoEscuro from "@/assets/logo-branca.png";
-import logoFundoClaro from "@/assets/logo-azul.jpg";
+import logoFundoEscuro from "@/assets/logo-fundo-escuro.png";
+import logoFundoClaro from "@/assets/logo-fundo-claro.jpg";
 import LanguageSelector from "./LanguageSelector";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -16,11 +16,21 @@ const Navigation = () => {
     const isCorporatePage = location.pathname === "/ingles-para-empresas";
     const { t } = useLanguage();
 
+    // Optimized scroll handler with requestAnimationFrame
     useEffect(() => {
+        let ticking = false;
+
         const handleScroll = () => {
-            setIsScrolled(window.scrollY > 20);
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    setIsScrolled(window.scrollY > 20);
+                    ticking = false;
+                });
+                ticking = true;
+            }
         };
-        window.addEventListener("scroll", handleScroll);
+
+        window.addEventListener("scroll", handleScroll, { passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
@@ -68,7 +78,12 @@ const Navigation = () => {
                         <img
                             src={logoSrc}
                             alt="Speak Online Internacional"
+                            width={120}
+                            height={48}
                             className="h-12 w-auto"
+                            loading="eager"
+                            fetchPriority="high"
+                            decoding="async"
                         />
                     </Link>
 

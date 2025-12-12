@@ -46,7 +46,11 @@ const Countries = () => {
                                 src={`https://flagcdn.com/w80/${country.code}.png`}
                                 srcSet={`https://flagcdn.com/w160/${country.code}.png 2x`}
                                 alt={`${country.name} flag`}
+                                width={64}
+                                height={48}
                                 className="w-16 h-12 object-cover rounded shadow-md group-hover:scale-110 transition-transform duration-300"
+                                loading="lazy"
+                                decoding="async"
                             />
                             <span className="text-primary-foreground font-medium text-center text-sm">
                                 {language === 'en' ? country.nameEn : country.name}

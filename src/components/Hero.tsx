@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -15,22 +15,32 @@ const Hero = () => {
     goal: "",
   });
 
+  // Optimized scroll handler with requestAnimationFrame to prevent reflows
   useEffect(() => {
+    let ticking = false;
+
     const handleScroll = () => {
-      setScrollY(window.scrollY);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrollY(window.scrollY);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
-    window.addEventListener("scroll", handleScroll);
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault();
     toast({
       title: "Solicitação enviada!",
       description: "Entraremos em contato em breve.",
     });
     setFormData({ name: "", email: "", goal: "" });
-  };
+  }, [toast]);
 
   return (
     <header id="inicio" className="relative min-h-screen flex items-center pt-20 overflow-hidden" role="banner" aria-label="Seção principal">
@@ -41,9 +51,13 @@ const Hero = () => {
           src={heroImage}
           alt=""
           aria-hidden="true"
-          className="w-full h-full object-cover mix-blend-overlay opacity-30"
+          width={1920}
+          height={1080}
+          className="w-full h-full object-cover mix-blend-overlay opacity-30 will-change-transform"
           style={{ transform: `translateY(${scrollY * 0.5}px)` }}
           loading="eager"
+          fetchPriority="high"
+          decoding="async"
         />
       </div>
 

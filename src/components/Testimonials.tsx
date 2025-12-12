@@ -88,7 +88,11 @@ const Testimonials = () => {
                                     <img
                                         src={video.thumbnail}
                                         alt={`Depoimento de ${video.name}`}
+                                        width={270}
+                                        height={480}
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                        loading="lazy"
+                                        decoding="async"
                                     />
 
                                     {/* Overlay */}
