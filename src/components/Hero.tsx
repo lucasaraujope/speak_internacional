@@ -5,9 +5,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import heroImage from "@/assets/hero-image.jpg";
 import { Globe, TrendingUp, Award } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Hero = () => {
   const { toast } = useToast();
+  const { t } = useLanguage();
   const [scrollY, setScrollY] = useState(0);
   const [formData, setFormData] = useState({
     name: "",
@@ -69,18 +71,17 @@ const Hero = () => {
             <div className="inline-flex items-center gap-2 bg-secondary/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
               <Award className="w-4 h-4 text-secondary" aria-hidden="true" />
               <span className="text-sm font-medium text-secondary">
-                Referência em Inglês Profissional
+                {t('hero.badge')}
               </span>
             </div>
 
             <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-              Domine o Inglês e{" "}
-              <span className="text-gradient-gold">Impulsione sua Carreira</span>
+              {t('hero.title1')}{" "}
+              <span className="text-gradient-gold">{t('hero.title2')}</span>
             </h1>
 
-            <p className="text-xl mb-8 text-primary-foreground/90 leading-relaxed">
-              Metodologia moderna e professores especializados para profissionais que
-              querem resultados reais. Aprenda inglês com quem entende sua carreira.
+            <p className="text-xl mb-8 text-primary-foreground/90 leading-relaxed whitespace-pre-line">
+              {t('hero.description')}
             </p>
 
             <div className="flex flex-wrap gap-6 mb-8" role="list" aria-label="Benefícios principais">
@@ -89,9 +90,9 @@ const Hero = () => {
                   <Globe className="w-6 h-6 text-secondary" />
                 </div>
                 <div>
-                  <div className="font-semibold">Fluência Global</div>
+                  <div className="font-semibold">{t('hero.globalFluency')}</div>
                   <div className="text-sm text-primary-foreground/80">
-                    Comunicação profissional
+                    {t('hero.professionalCommunication')}
                   </div>
                 </div>
               </div>
@@ -101,9 +102,9 @@ const Hero = () => {
                   <TrendingUp className="w-6 h-6 text-secondary" />
                 </div>
                 <div>
-                  <div className="font-semibold">Resultados Rápidos</div>
+                  <div className="font-semibold">{t('hero.fastResults')}</div>
                   <div className="text-sm text-primary-foreground/80">
-                    Metodologia comprovada
+                    {t('hero.provenMethod')}
                   </div>
                 </div>
               </div>
@@ -114,21 +115,21 @@ const Hero = () => {
           <aside className="animate-scale-in" aria-label="Formulário de orçamento">
             <div className="bg-card rounded-2xl shadow-2xl p-8 backdrop-blur-sm">
               <h2 className="text-2xl font-bold mb-2 text-card-foreground">
-                Solicite um Orçamento
+                {t('hero.formTitle')}
               </h2>
               <p className="text-muted-foreground mb-6">
-                Descubra o plano ideal para seus objetivos
+                {t('hero.formDescription')}
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-4" aria-label="Formulário de solicitação de orçamento">
                 <div>
                   <label htmlFor="hero-name" className="block text-sm font-medium mb-2 text-card-foreground">
-                    Nome completo
+                    {t('hero.fullName')}
                   </label>
                   <Input
                     id="hero-name"
                     type="text"
-                    placeholder="Seu nome"
+                    placeholder={t('hero.yourName')}
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     required
@@ -139,7 +140,7 @@ const Hero = () => {
 
                 <div>
                   <label htmlFor="hero-email" className="block text-sm font-medium mb-2 text-card-foreground">
-                    E-mail
+                    {t('hero.email')}
                   </label>
                   <Input
                     id="hero-email"
@@ -155,11 +156,11 @@ const Hero = () => {
 
                 <div>
                   <label htmlFor="hero-goal" className="block text-sm font-medium mb-2 text-card-foreground">
-                    Seu objetivo com o inglês
+                    {t('hero.goalLabel')}
                   </label>
                   <Textarea
                     id="hero-goal"
-                    placeholder="Ex: Melhorar comunicação em reuniões, preparar para entrevista..."
+                    placeholder={t('hero.goalPlaceholder')}
                     value={formData.goal}
                     onChange={(e) => setFormData({ ...formData, goal: e.target.value })}
                     required
@@ -172,11 +173,11 @@ const Hero = () => {
                   type="submit"
                   className="w-full bg-gradient-gold text-primary-foreground hover:shadow-gold text-lg py-6 focus:ring-2 focus:ring-secondary focus:ring-offset-2"
                 >
-                  Receber Proposta Personalizada
+                  {t('hero.submitButton')}
                 </Button>
 
                 <p className="text-xs text-muted-foreground text-center">
-                  Resposta em até 24 horas úteis
+                  {t('hero.responseTime')}
                 </p>
               </form>
             </div>
