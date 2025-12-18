@@ -82,7 +82,6 @@ const Navigation = () => {
                             height={48}
                             className="h-12 w-auto"
                             loading="eager"
-                            fetchPriority="high"
                             decoding="async"
                         />
                     </Link>

@@ -3,6 +3,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useState } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
+import { useLanguage } from "@/contexts/LanguageContext";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -33,16 +34,17 @@ const videoTestimonials = [
 const Testimonials = () => {
     const { ref, isVisible } = useScrollReveal();
     const [activeVideo, setActiveVideo] = useState<string | null>(null);
+    const { t } = useLanguage();
 
     return (
         <section className="py-24 bg-muted/30">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-16 animate-fade-in">
                     <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
-                        Histórias de <span className="text-gradient-gold">Sucesso</span>
+                        {t('testimonials.title')} <span className="text-gradient-gold">{t('testimonials.titleHighlight')}</span>
                     </h2>
                     <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                        Veja como nossos alunos transformaram suas carreiras
+                        {t('testimonials.subtitle')}
                     </p>
                 </div>
 
@@ -87,7 +89,7 @@ const Testimonials = () => {
 
                                     <img
                                         src={video.thumbnail}
-                                        alt={`Depoimento de ${video.name}`}
+                                        alt={`${t('testimonials.watchVideo')} ${video.name}`}
                                         width={270}
                                         height={480}
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"

@@ -1,33 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Users, Award, Star, TrendingUp } from "lucide-react";
-
-const stats = [
-    {
-        icon: Users,
-        value: 5000,
-        suffix: "+",
-        label: "Alunos Ativos",
-    },
-    {
-        icon: Award,
-        value: 95,
-        suffix: "%",
-        label: "Taxa de Aprovação",
-    },
-    {
-        icon: Star,
-        value: 4.9,
-        suffix: "/5",
-        label: "Avaliação Média",
-        decimals: 1,
-    },
-    {
-        icon: TrendingUp,
-        value: 87,
-        suffix: "%",
-        label: "Crescimento de Carreira",
-    },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const AnimatedCounter = ({
     end,
@@ -92,15 +65,45 @@ const AnimatedCounter = ({
 };
 
 const Stats = () => {
+    const { t } = useLanguage();
+
+    const stats = [
+        {
+            icon: Users,
+            value: 5000,
+            suffix: "+",
+            labelKey: "stats.activeStudents",
+        },
+        {
+            icon: Award,
+            value: 95,
+            suffix: "%",
+            labelKey: "stats.approvalRate",
+        },
+        {
+            icon: Star,
+            value: 4.9,
+            suffix: "/5",
+            labelKey: "stats.averageRating",
+            decimals: 1,
+        },
+        {
+            icon: TrendingUp,
+            value: 87,
+            suffix: "%",
+            labelKey: "stats.careerGrowth",
+        },
+    ];
+
     return (
         <section className="py-24 bg-gradient-primary text-primary-foreground">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-16 animate-fade-in">
                     <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                        Resultados que <span className="text-gradient-gold">Comprovam</span>
+                        {t('stats.title')} <span className="text-gradient-gold">{t('stats.titleHighlight')}</span>
                     </h2>
                     <p className="text-xl text-primary-foreground/90 max-w-2xl mx-auto">
-                        Números que refletem nossa excelência e o sucesso dos nossos alunos
+                        {t('stats.subtitle')}
                     </p>
                 </div>
 
@@ -121,7 +124,7 @@ const Stats = () => {
                                 />
                                 <span className="text-3xl font-bold text-secondary">{stat.suffix}</span>
                             </div>
-                            <div className="text-lg text-primary-foreground/80">{stat.label}</div>
+                            <div className="text-lg text-primary-foreground/80">{t(stat.labelKey)}</div>
                         </div>
                     ))}
                 </div>

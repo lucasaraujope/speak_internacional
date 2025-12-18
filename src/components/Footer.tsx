@@ -1,8 +1,10 @@
 import { Instagram, Linkedin, Youtube, Mail, Phone, MapPin } from "lucide-react";
 import logoFundoEscuro from "@/assets/logo-fundo-escuro.png";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Footer = () => {
     const currentYear = new Date().getFullYear();
+    const { t } = useLanguage();
 
     return (
         <footer id="contato" className="bg-gradient-primary text-primary-foreground">
@@ -16,21 +18,20 @@ const Footer = () => {
                             className="h-12 w-auto mb-4"
                         />
                         <p className="text-primary-foreground/80 text-sm leading-relaxed">
-                            Transformando carreiras através da fluência em inglês. Metodologia moderna para
-                            profissionais que buscam resultados.
+                            {t('footer.description')}
                         </p>
                     </div>
 
                     {/* Quick Links */}
                     <div>
-                        <h3 className="font-semibold text-lg mb-4 text-secondary">Links Rápidos</h3>
+                        <h3 className="font-semibold text-lg mb-4 text-secondary">{t('footer.quickLinks')}</h3>
                         <ul className="space-y-2 text-sm">
                             <li>
                                 <a
                                     href="#inicio"
                                     className="text-primary-foreground/80 hover:text-secondary smooth-transition"
                                 >
-                                    Início
+                                    {t('nav.home')}
                                 </a>
                             </li>
                             <li>
@@ -38,7 +39,7 @@ const Footer = () => {
                                     href="#cursos"
                                     className="text-primary-foreground/80 hover:text-secondary smooth-transition"
                                 >
-                                    Cursos
+                                    {t('nav.courses')}
                                 </a>
                             </li>
                             <li>
@@ -46,7 +47,7 @@ const Footer = () => {
                                     href="#metodologia"
                                     className="text-primary-foreground/80 hover:text-secondary smooth-transition"
                                 >
-                                    Metodologia
+                                    {t('nav.methodology')}
                                 </a>
                             </li>
                             <li>
@@ -54,7 +55,7 @@ const Footer = () => {
                                     href="#planos"
                                     className="text-primary-foreground/80 hover:text-secondary smooth-transition"
                                 >
-                                    Planos
+                                    {t('nav.plans')}
                                 </a>
                             </li>
                         </ul>
@@ -62,7 +63,7 @@ const Footer = () => {
 
                     {/* Contact Info */}
                     <div>
-                        <h3 className="font-semibold text-lg mb-4 text-secondary">Contato</h3>
+                        <h3 className="font-semibold text-lg mb-4 text-secondary">{t('footer.contact')}</h3>
                         <ul className="space-y-3 text-sm">
                             <li className="flex items-start gap-2">
                                 <Mail className="w-4 h-4 mt-1 text-secondary shrink-0" />
@@ -76,16 +77,16 @@ const Footer = () => {
                             <li className="flex items-start gap-2">
                                 <Phone className="w-4 h-4 mt-1 text-secondary shrink-0" />
                                 <a
-                                    href="tel:+5511999999999"
+                                    href="tel:+5511955942870"
                                     className="text-primary-foreground/80 hover:text-secondary smooth-transition"
                                 >
-                                    (11) 99999-9999
+                                    (11) 95594-2870
                                 </a>
                             </li>
                             <li className="flex items-start gap-2">
                                 <MapPin className="w-4 h-4 mt-1 text-secondary shrink-0" />
                                 <span className="text-primary-foreground/80">
-                                    São Paulo, SP - Brasil
+                                    {t('footer.location')}
                                 </span>
                             </li>
                         </ul>
@@ -93,9 +94,9 @@ const Footer = () => {
 
                     {/* Social Media */}
                     <div>
-                        <h3 className="font-semibold text-lg mb-4 text-secondary">Redes Sociais</h3>
+                        <h3 className="font-semibold text-lg mb-4 text-secondary">{t('footer.socialMedia')}</h3>
                         <p className="text-primary-foreground/80 text-sm mb-4">
-                            Siga-nos e fique por dentro de dicas e conteúdos exclusivos
+                            {t('footer.followUs')}
                         </p>
                         <div className="flex gap-3">
                             <a
@@ -151,13 +152,13 @@ const Footer = () => {
                 {/* Bottom Bar */}
                 <div className="border-t border-primary-foreground/10 pt-8 mt-8">
                     <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-primary-foreground/60">
-                        <p>© {currentYear} Speak Online Internacional. Todos os direitos reservados.</p>
+                        <p>© {currentYear} Speak Online Internacional. {t('footer.rights')}</p>
                         <div className="flex gap-6">
                             <a href="#" className="hover:text-secondary smooth-transition">
-                                Política de Privacidade
+                                {t('footer.privacy')}
                             </a>
                             <a href="#" className="hover:text-secondary smooth-transition">
-                                Termos de Uso
+                                {t('footer.terms')}
                             </a>
                         </div>
                     </div>

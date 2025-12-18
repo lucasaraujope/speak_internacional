@@ -218,6 +218,7 @@ export const translations: Translations = {
     'footer.contact': { pt: 'Contato', en: 'Contact', es: 'Contacto', fr: 'Contact', it: 'Contatto' },
     'footer.socialMedia': { pt: 'Redes Sociais', en: 'Social Media', es: 'Redes Sociales', fr: 'Réseaux Sociaux', it: 'Social Media' },
     'footer.followUs': { pt: 'Siga-nos e fique por dentro de dicas e conteúdos exclusivos', en: 'Follow us and stay up to date with tips and exclusive content', es: 'Síguenos y mantente al día con consejos y contenido exclusivo', fr: 'Suivez-nous et restez informé des astuces et contenus exclusifs', it: 'Seguici e rimani aggiornato con consigli e contenuti esclusivi' },
+    'footer.location': { pt: 'São Paulo, SP - Brasil', en: 'São Paulo, SP - Brazil', es: 'São Paulo, SP - Brasil', fr: 'São Paulo, SP - Brésil', it: 'São Paulo, SP - Brasile' },
     'footer.privacy': { pt: 'Política de Privacidade', en: 'Privacy Policy', es: 'Política de Privacidad', fr: 'Politique de Confidentialité', it: 'Politica sulla Privacy' },
     'footer.terms': { pt: 'Termos de Uso', en: 'Terms of Use', es: 'Términos de Uso', fr: 'Conditions d\'Utilisation', it: 'Termini di Utilizzo' },
 

@@ -1,41 +1,44 @@
 import { CheckCircle2, BookOpen, Target, TrendingUp, Award, Sparkles } from "lucide-react";
-
-const journeySteps = [
-    {
-        icon: CheckCircle2,
-        title: "Diagnóstico",
-        description: "Avaliação completa do seu nível e objetivos",
-    },
-    {
-        icon: BookOpen,
-        title: "Plano Personalizado",
-        description: "Criamos uma jornada sob medida para você",
-    },
-    {
-        icon: Target,
-        title: "Aulas Interativas",
-        description: "Aprenda com metodologia moderna e engajadora",
-    },
-    {
-        icon: TrendingUp,
-        title: "Prática Constante",
-        description: "Conversação e exercícios práticos diários",
-    },
-    {
-        icon: Award,
-        title: "Conquistas",
-        description: "Acompanhe sua evolução com metas claras",
-    },
-    {
-        icon: Sparkles,
-        title: "Fluência",
-        description: "Domine o inglês e alcance seus objetivos",
-    },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Journey = () => {
+    const { t } = useLanguage();
+
+    const journeySteps = [
+        {
+            icon: CheckCircle2,
+            title: t('journey.diagnosis'),
+            description: t('journey.diagnosisDesc'),
+        },
+        {
+            icon: BookOpen,
+            title: t('journey.personalizedPlan'),
+            description: t('journey.personalizedPlanDesc'),
+        },
+        {
+            icon: Target,
+            title: t('journey.interactiveClasses'),
+            description: t('journey.interactiveClassesDesc'),
+        },
+        {
+            icon: TrendingUp,
+            title: t('journey.constantPractice'),
+            description: t('journey.constantPracticeDesc'),
+        },
+        {
+            icon: Award,
+            title: t('journey.achievements'),
+            description: t('journey.achievementsDesc'),
+        },
+        {
+            icon: Sparkles,
+            title: t('journey.fluency'),
+            description: t('journey.fluencyDesc'),
+        },
+    ];
+
     const openWhatsApp = () => {
-        const message = encodeURIComponent("Olá! Quero começar minha jornada de aprendizado de inglês.");
+        const message = encodeURIComponent(t('journey.whatsappMessage'));
         window.open(`https://wa.me/5512991298390?text=${message}`, "_blank");
     };
 
@@ -44,10 +47,10 @@ const Journey = () => {
             <div className="container mx-auto px-4">
                 <div className="text-center mb-16 animate-fade-in">
                     <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
-                        Jornada do <span className="text-gradient-gold">Aluno Speak</span>
+                        {t('journey.title')} <span className="text-gradient-gold">{t('journey.titleHighlight')}</span>
                     </h2>
                     <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                        Do primeiro contato à fluência: seu caminho estruturado para o sucesso
+                        {t('journey.subtitle')}
                     </p>
                 </div>
 
@@ -90,7 +93,7 @@ const Journey = () => {
                         className="inline-block bg-gradient-gold px-8 py-4 rounded-2xl shadow-gold hover:shadow-card-hover hover:scale-105 transition-all duration-300 cursor-pointer"
                     >
                         <p className="text-primary font-semibold text-lg">
-                            ✨ Comece sua jornada hoje e veja resultados em semanas, não anos
+                            {t('journey.cta')}
                         </p>
                     </button>
                 </div>
