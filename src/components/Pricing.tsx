@@ -1,100 +1,97 @@
-import { Check } from "lucide-react";
+import { Check, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useState } from "react";
-
-const plansData = {
-    basico: [
-        {
-            name: "Essencial",
-            description: "Ideal para quem está começando",
-            features: [
-                "1 aula semanal (50min)",
-                "Material didático digital",
-                "Acesso à plataforma",
-                "Grupo de conversação",
-                "Suporte por email",
-            ],
-            popular: false,
-        },
-        {
-            name: "Profissional",
-            description: "Mais popular entre iniciantes",
-            features: [
-                "2 aulas semanais (50min)",
-                "Material didático completo",
-                "Acesso total à plataforma",
-                "Grupos de conversação",
-                "Aulas de reforço",
-                "Suporte prioritário",
-            ],
-            popular: true,
-        },
-        {
-            name: "Executive",
-            description: "Para quem quer acelerar",
-            features: [
-                "3 aulas semanais (50min)",
-                "Material premium",
-                "Acesso VIP à plataforma",
-                "Conversação semanal",
-                "Coaching de estudos",
-                "Suporte 24/7",
-            ],
-            popular: false,
-        },
-    ],
-    intermediario: [
-        {
-            name: "Essencial",
-            description: "Para consolidar seu inglês",
-            features: [
-                "2 aulas semanais (50min)",
-                "Material didático avançado",
-                "Acesso à plataforma",
-                "Grupo de conversação",
-                "Simulados mensais",
-                "Suporte por email",
-            ],
-            popular: false,
-        },
-        {
-            name: "Profissional",
-            description: "Mais popular entre profissionais",
-            features: [
-                "3 aulas semanais (50min)",
-                "Material didático completo",
-                "Acesso total à plataforma",
-                "Grupos de conversação ilimitados",
-                "Aulas de reforço",
-                "Simulados e certificações",
-                "Suporte prioritário",
-            ],
-            popular: true,
-        },
-        {
-            name: "Executive",
-            description: "Para quem busca resultados máximos",
-            features: [
-                "5 aulas semanais (50min)",
-                "Professores PhD ou mestres",
-                "Material premium personalizado",
-                "Acesso VIP à plataforma",
-                "Conversação diária",
-                "Coaching de carreira",
-                "Preparação para certificações",
-                "Networking internacional",
-                "Suporte 24/7",
-            ],
-            popular: false,
-        },
-    ],
-};
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Pricing = () => {
     const { ref, isVisible } = useScrollReveal();
     const [activeModality, setActiveModality] = useState<"basico" | "intermediario">("basico");
+    const { t } = useLanguage();
+
+    const plansData = {
+        basico: [
+            {
+                name: t('corporate.sprint'),
+                description: t('corporate.sprintDesc'),
+                hours: t('corporate.sprintHours'),
+                features: [
+                    t('corporate.feature.4hours'),
+                    t('corporate.feature.unlimitedPlatform'),
+                    t('corporate.feature.materialIncluded'),
+                    t('corporate.feature.tripleGuarantee'),
+                ],
+                popular: false,
+            },
+            {
+                name: t('corporate.gold'),
+                description: t('corporate.goldDesc'),
+                hours: t('corporate.goldHours'),
+                features: [
+                    t('corporate.feature.8hours'),
+                    t('corporate.feature.unlimitedPlatform'),
+                    t('corporate.feature.nagibe'),
+                    t('corporate.feature.materialIncluded'),
+                    t('corporate.feature.tripleGuarantee'),
+                ],
+                popular: true,
+            },
+            {
+                name: t('corporate.premium'),
+                description: t('corporate.premiumDesc'),
+                hours: t('corporate.premiumHours'),
+                features: [
+                    t('corporate.feature.10hours'),
+                    t('corporate.feature.allBenefits'),
+                    t('corporate.feature.diagnosis'),
+                    t('corporate.feature.mentorship'),
+                    t('corporate.feature.tripleGuarantee'),
+                ],
+                popular: false,
+            },
+        ],
+        intermediario: [
+            {
+                name: t('corporate.sprint'),
+                description: t('corporate.sprintDesc'),
+                hours: t('corporate.sprintHours'),
+                features: [
+                    t('corporate.feature.4hours'),
+                    t('corporate.feature.unlimitedPlatform'),
+                    t('corporate.feature.materialIncluded'),
+                    t('corporate.feature.tripleGuarantee'),
+                ],
+                popular: false,
+            },
+            {
+                name: t('corporate.gold'),
+                description: t('corporate.goldDesc'),
+                hours: t('corporate.goldHours'),
+                features: [
+                    t('corporate.feature.8hours'),
+                    t('corporate.feature.unlimitedPlatform'),
+                    t('corporate.feature.nagibe'),
+                    t('corporate.feature.materialIncluded'),
+                    t('corporate.feature.tripleGuarantee'),
+                ],
+                popular: true,
+            },
+            {
+                name: t('corporate.premium'),
+                description: t('corporate.premiumDesc'),
+                hours: t('corporate.premiumHours'),
+                features: [
+                    t('corporate.feature.10hours'),
+                    t('corporate.feature.allBenefits'),
+                    t('corporate.feature.diagnosis'),
+                    t('corporate.feature.mentorship'),
+                    t('corporate.feature.tripleGuarantee'),
+                ],
+                popular: false,
+            },
+        ],
+    };
 
     const openWhatsApp = (planName: string, modality: string) => {
         const modalityText = modality === "basico" ? "Básico" : "Intermediário";
@@ -109,10 +106,10 @@ const Pricing = () => {
             <div className="container mx-auto px-4">
                 <div className="text-center mb-16 animate-fade-in">
                     <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
-                        Planos de <span className="text-gradient-gold">Estudo</span>
+                        {t('pricing.title')} <span className="text-gradient-gold">{t('pricing.titleHighlight')}</span>
                     </h2>
                     <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-10">
-                        Escolha o plano ideal para seus objetivos
+                        {t('pricing.subtitle')}
                     </p>
 
                     {/* Toggle Básico / Intermediário */}
@@ -124,7 +121,7 @@ const Pricing = () => {
                                     : "text-muted-foreground hover:text-foreground"
                                 }`}
                         >
-                            Básico
+                            {t('pricing.basic')}
                         </button>
                         <button
                             onClick={() => setActiveModality("intermediario")}
@@ -133,7 +130,7 @@ const Pricing = () => {
                                     : "text-muted-foreground hover:text-foreground"
                                 }`}
                         >
-                            Intermediário
+                            {t('pricing.intermediate')}
                         </button>
                     </div>
                 </div>
@@ -149,7 +146,7 @@ const Pricing = () => {
                             {plan.popular && (
                                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                                     <span className="bg-gradient-gold text-primary px-4 py-1 rounded-full text-sm font-bold shadow-gold">
-                                        Mais Popular
+                                        {t('pricing.mostPopular')}
                                     </span>
                                 </div>
                             )}
@@ -161,6 +158,10 @@ const Pricing = () => {
                                 <CardDescription className="text-muted-foreground">
                                     {plan.description}
                                 </CardDescription>
+                                <div className="flex items-center justify-center gap-2 mt-4">
+                                    <Clock className="w-5 h-5 text-secondary" />
+                                    <span className="text-foreground font-medium">{plan.hours}</span>
+                                </div>
                             </CardHeader>
 
                             <CardContent className="flex flex-col flex-grow">
@@ -180,7 +181,7 @@ const Pricing = () => {
                                             : "bg-primary text-primary-foreground hover:bg-primary/90"
                                         }`}
                                 >
-                                    Começar Agora
+                                    {t('pricing.startNow')}
                                 </Button>
                             </CardContent>
                         </Card>
@@ -189,7 +190,7 @@ const Pricing = () => {
 
                 <div className="mt-12 text-center">
                     <p className="text-muted-foreground">
-                        Todos os planos incluem <span className="text-secondary font-semibold">garantia de 7 dias</span> e podem ser cancelados a qualquer momento
+                        {t('pricing.guarantee')}
                     </p>
                 </div>
             </div>

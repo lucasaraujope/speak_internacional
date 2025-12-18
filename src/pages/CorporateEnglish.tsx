@@ -4,11 +4,10 @@ import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { useLanguage } from "@/contexts/LanguageContext";
 import {
     TrendingUp,
     Award,
-    CheckCircle,
-    Clock,
     Globe,
     Briefcase,
     Target,
@@ -27,8 +26,8 @@ import corporateHeroSlide from "@/assets/corporate-hero-slide.jpg";
 const CorporateEnglish = () => {
     const heroReveal = useScrollReveal();
     const benefitsReveal = useScrollReveal();
-    const packagesReveal = useScrollReveal();
     const processReveal = useScrollReveal();
+    const { t } = useLanguage();
 
     // SEO: Update document title and meta tags
     useEffect(() => {
@@ -69,87 +68,46 @@ const CorporateEnglish = () => {
     const benefits = [
         {
             icon: TrendingUp,
-            title: "Aumento de Produtividade",
-            description: "Colaboradores fluentes em inglês se comunicam melhor com clientes e parceiros internacionais."
+            titleKey: "corporate.productivityIncrease",
+            descKey: "corporate.productivityDesc"
         },
         {
             icon: Globe,
-            title: "Expansão Internacional",
-            description: "Prepare sua equipe para mercados globais e oportunidades de negócios internacionais."
+            titleKey: "corporate.internationalExpansion",
+            descKey: "corporate.expansionDesc"
         },
         {
             icon: Award,
-            title: "Retenção de Talentos",
-            description: "Investir no desenvolvimento dos colaboradores aumenta o engajamento e reduz turnover."
+            titleKey: "corporate.talentRetention",
+            descKey: "corporate.retentionDesc"
         },
         {
             icon: Briefcase,
-            title: "Competitividade",
-            description: "Equipes bilíngues são mais competitivas no mercado atual globalizado."
-        },
-    ];
-
-    const packages = [
-        {
-            name: "Sprint",
-            description: "Imersão rápida para acelerar sua fala",
-            employees: "12h para Falar Inglês",
-            features: [
-                "4 horas mensais – 2 aulas ao vivo de 30 min por semana",
-                "Acesso ilimitado à plataforma de vídeo aulas",
-                "Material sem custo adicional - incluso no plano",
-                "Garantia Tríplice Exclusiva",
-            ],
-            popular: false,
-        },
-        {
-            name: "Gold",
-            description: "Evolução consistente com mais prática guiada",
-            employees: "24h para Falar Inglês",
-            features: [
-                "8 horas mensais – 4 aulas ao vivo de 30 min por semana",
-                "Acesso ilimitado à plataforma de vídeo aulas",
-                "3 aulas semanais de 45 minutos com o Nagibe, professor e CEO da Speak, ao vivo",
-                "Material sem custo adicional - incluso no plano",
-                "Garantia Tríplice Exclusiva",
-            ],
-            popular: true,
-        },
-        {
-            name: "Premium",
-            description: "Alta performance para quem quer avançar no máximo nível",
-            employees: "30h para Falar Inglês",
-            features: [
-                "10 horas mensais – 5 aulas ao vivo de 30 min por semana",
-                "Todos os benefícios dos Planos Sprint e Gold",
-                "Diagnóstico Linguístico Inicial",
-                "Mentoria e Plano de Crescimento on demand",
-                "Garantia Tríplice Exclusiva",
-            ],
-            popular: false,
+            titleKey: "corporate.competitiveness",
+            descKey: "corporate.competitivenessDesc"
         },
     ];
 
     const processSteps = [
         {
             icon: Target,
-            title: "Diagnóstico",
-            description: "Avaliamos o nível de cada colaborador e entendemos os objetivos da empresa."
+            titleKey: "corporate.process.diagnosis",
+            descKey: "corporate.process.diagnosisDesc"
         },
         {
             icon: BookOpen,
-            title: "Programa Personalizado",
-            description: "Criamos um programa sob medida para as necessidades específicas do seu negócio."
+            titleKey: "corporate.process.customProgram",
+            descKey: "corporate.process.customProgramDesc"
         },
         {
             icon: Headphones,
-            title: "Implementação",
-            description: "Iniciamos as aulas com horários flexíveis que se adaptam à rotina da empresa."
+            titleKey: "corporate.process.implementation",
+            descKey: "corporate.process.implementationDesc"
         },
         {
             icon: BarChart3,
-            title: "Acompanhamento",
-            description: "Monitoramos o progresso e ajustamos o programa conforme necessário."
+            titleKey: "corporate.process.followUp",
+            descKey: "corporate.process.followUpDesc"
         },
     ];
 
@@ -202,7 +160,7 @@ const CorporateEnglish = () => {
                                     className="bg-gradient-gold text-primary hover:shadow-gold text-lg px-8 py-6 shadow-lg focus:ring-2 focus:ring-secondary focus:ring-offset-2"
                                     aria-label="Solicitar proposta de inglês corporativo via WhatsApp"
                                 >
-                                    Solicitar Proposta
+                                    {t('corporate.requestProposal')}
                                 </Button>
                             </div>
                         </figure>
@@ -219,10 +177,10 @@ const CorporateEnglish = () => {
             >
                 <div className="container mx-auto px-4">
                     <h2 id="benefits-heading" className="text-3xl md:text-4xl font-bold text-center mb-4">
-                        Por que investir em <span className="text-gradient-gold">inglês corporativo?</span>
+                        {t('corporate.whyInvest')} <span className="text-gradient-gold">{t('corporate.whyInvestHighlight')}</span>
                     </h2>
                     <p className="text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
-                        Empresas que investem no desenvolvimento linguístico dos colaboradores colhem resultados expressivos
+                        {t('corporate.whyInvestSubtitle')}
                     </p>
 
                     <ul className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 list-none" role="list" aria-label="Benefícios do inglês corporativo">
@@ -233,10 +191,10 @@ const CorporateEnglish = () => {
                                         <div className="w-14 h-14 bg-gradient-gold rounded-xl flex items-center justify-center mb-4" aria-hidden="true">
                                             <benefit.icon className="w-7 h-7 text-primary" aria-hidden="true" />
                                         </div>
-                                        <CardTitle className="text-lg">{benefit.title}</CardTitle>
+                                        <CardTitle className="text-lg">{t(benefit.titleKey)}</CardTitle>
                                     </CardHeader>
                                     <CardContent>
-                                        <CardDescription>{benefit.description}</CardDescription>
+                                        <CardDescription>{t(benefit.descKey)}</CardDescription>
                                     </CardContent>
                                 </Card>
                             </li>
@@ -245,72 +203,6 @@ const CorporateEnglish = () => {
                 </div>
             </section>
 
-            {/* Packages Section */}
-            <section
-                ref={packagesReveal.ref as React.RefObject<HTMLElement>}
-                className={`py-20 bg-muted/30 transition-all duration-1000 ${packagesReveal.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-                    }`}
-                aria-labelledby="packages-heading"
-            >
-                <div className="container mx-auto px-4">
-                    <h2 id="packages-heading" className="text-3xl md:text-4xl font-bold text-center mb-4">
-                        Pacotes <span className="text-gradient-gold">Empresariais</span>
-                    </h2>
-                    <p className="text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
-                        Soluções flexíveis que se adaptam ao tamanho e às necessidades da sua empresa
-                    </p>
-
-                    <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto" role="list" aria-label="Pacotes de inglês corporativo">
-                        {packages.map((pkg, index) => (
-                            <article
-                                key={index}
-                                className={`relative border-border hover:shadow-gold transition-all duration-300 flex flex-col rounded-lg border bg-card text-card-foreground shadow-sm ${pkg.popular ? "ring-2 ring-secondary scale-105" : ""
-                                    }`}
-                                aria-label={`Pacote ${pkg.name}${pkg.popular ? ' - Mais popular' : ''}`}
-                            >
-                                {pkg.popular && (
-                                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2" aria-hidden="true">
-                                        <span className="bg-gradient-gold text-primary px-4 py-1 rounded-full text-sm font-bold shadow-gold">
-                                            Mais Popular
-                                        </span>
-                                    </div>
-                                )}
-
-                                <div className="text-center pb-4 p-6">
-                                    <h3 className="text-2xl font-semibold mb-2">{pkg.name}</h3>
-                                    <p className="text-muted-foreground text-sm">{pkg.description}</p>
-                                    <div className="flex items-center justify-center gap-2 mt-4">
-                                        <Clock className="w-5 h-5 text-secondary" aria-hidden="true" />
-                                        <span className="text-foreground font-medium">{pkg.employees}</span>
-                                    </div>
-                                </div>
-
-                                <div className="flex flex-col flex-grow p-6 pt-0">
-                                    <ul className="space-y-3 mb-6 flex-grow" aria-label={`Recursos do pacote ${pkg.name}`}>
-                                        {pkg.features.map((feature, i) => (
-                                            <li key={i} className="flex items-start gap-3">
-                                                <CheckCircle className="w-5 h-5 text-secondary shrink-0 mt-0.5" aria-hidden="true" />
-                                                <span className="text-muted-foreground">{feature}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
-
-                                    <Button
-                                        onClick={() => openWhatsApp(pkg.name)}
-                                        className={`w-full mt-auto focus:ring-2 focus:ring-offset-2 ${pkg.popular
-                                                ? "bg-gradient-gold text-primary hover:shadow-gold focus:ring-secondary"
-                                                : "bg-primary text-primary-foreground hover:bg-primary/90 focus:ring-primary"
-                                            }`}
-                                        aria-label={`Solicitar proposta para o pacote ${pkg.name} via WhatsApp`}
-                                    >
-                                        Solicitar Proposta
-                                    </Button>
-                                </div>
-                            </article>
-                        ))}
-                    </div>
-                </div>
-            </section>
 
             {/* Process Section */}
             <section
@@ -321,10 +213,10 @@ const CorporateEnglish = () => {
             >
                 <div className="container mx-auto px-4">
                     <h2 id="process-heading" className="text-3xl md:text-4xl font-bold text-center mb-4">
-                        Como <span className="text-gradient-gold">Funciona</span>
+                        {t('corporate.howItWorks')} <span className="text-gradient-gold">{t('corporate.howItWorksHighlight')}</span>
                     </h2>
                     <p className="text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
-                        Um processo simples e eficiente para implementar o inglês na sua empresa
+                        {t('corporate.howItWorksSubtitle')}
                     </p>
 
                     <ol className="grid md:grid-cols-4 gap-8 max-w-5xl mx-auto list-none" role="list" aria-label="Etapas do processo de implementação">
@@ -339,8 +231,8 @@ const CorporateEnglish = () => {
                                 >
                                     {index + 1}
                                 </div>
-                                <h3 className="text-lg font-bold text-foreground mb-2">{step.title}</h3>
-                                <p className="text-muted-foreground text-sm">{step.description}</p>
+                                <h3 className="text-lg font-bold text-foreground mb-2">{t(step.titleKey)}</h3>
+                                <p className="text-muted-foreground text-sm">{t(step.descKey)}</p>
 
                                 {index < processSteps.length - 1 && (
                                     <div className="hidden md:block absolute top-8 left-full w-full h-0.5 bg-gradient-to-r from-secondary to-transparent -z-10" aria-hidden="true"></div>
@@ -358,17 +250,17 @@ const CorporateEnglish = () => {
             >
                 <div className="container mx-auto px-4 text-center">
                     <h2 id="cta-heading" className="text-3xl md:text-4xl font-bold text-primary-foreground mb-4">
-                        Pronto para transformar sua equipe?
+                        {t('corporate.ctaTitle')}
                     </h2>
                     <p className="text-primary-foreground/80 mb-8 max-w-xl mx-auto">
-                        Entre em contato e receba uma proposta personalizada para sua empresa.
+                        {t('corporate.ctaSubtitle')}
                     </p>
                     <Button
                         onClick={openGeneralWhatsApp}
                         className="bg-gradient-gold text-primary hover:shadow-gold text-lg px-8 py-6 focus:ring-2 focus:ring-secondary focus:ring-offset-2"
                         aria-label="Falar com especialista em inglês corporativo via WhatsApp"
                     >
-                        Falar com Especialista
+                        {t('corporate.talkToSpecialist')}
                     </Button>
                 </div>
             </section>

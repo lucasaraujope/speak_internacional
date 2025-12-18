@@ -80,8 +80,11 @@ const Hero = () => {
               <span className="text-gradient-gold">{t('hero.title2')}</span>
             </h1>
 
-            <p className="text-xl mb-8 text-primary-foreground/90 leading-relaxed whitespace-pre-line">
-              {t('hero.description')}
+            <p className="text-xl mb-6 text-primary-foreground/90 leading-relaxed">
+              {t('hero.description1')}
+            </p>
+            <p className="text-xl mb-8 text-primary-foreground/90 leading-relaxed">
+              {t('hero.description2')}
             </p>
 
             <div className="flex flex-wrap gap-6 mb-8" role="list" aria-label="Benefícios principais">

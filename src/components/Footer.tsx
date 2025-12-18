@@ -1,5 +1,5 @@
 import { Instagram, Linkedin, Youtube, Mail, Phone, MapPin } from "lucide-react";
-import logoFundoEscuro from "@/assets/logo-branca.png";
+import logoFundoEscuro from "@/assets/logo-fundo-escuro.png";
 
 const Footer = () => {
     const currentYear = new Date().getFullYear();
