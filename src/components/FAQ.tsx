@@ -17,11 +17,6 @@ const faqs = [
       "O tempo varia de acordo com seu nível inicial e dedicação. Em média, alunos iniciantes alcançam conversação básica em 3-6 meses e fluência intermediária em 12-18 meses. Nosso método acelerado e prática constante permitem resultados mais rápidos que cursos tradicionais.",
   },
   {
-    question: "Os professores são nativos?",
-    answer:
-      "Trabalhamos com professores nativos e brasileiros com certificações internacionais (CELTA, TESOL, Cambridge). Todos têm experiência em inglês corporativo e passam por rigoroso processo de seleção.",
-  },
-  {
     question: "Posso mudar de plano depois?",
     answer:
       "Sim! Você pode fazer upgrade ou downgrade do seu plano a qualquer momento. As mudanças entram em vigor no próximo ciclo de cobrança, sem taxas adicionais.",
@@ -40,12 +35,7 @@ const faqs = [
     question: "E se eu perder uma aula?",
     answer:
       "Todas as aulas ficam gravadas na plataforma por 30 dias. Você também pode reagendar com até 24h de antecedência sem custos adicionais. Temos horários flexíveis de manhã, tarde e noite.",
-  },
-  {
-    question: "Qual a política de cancelamento?",
-    answer:
-      "Oferecemos garantia de 7 dias. Se não ficar satisfeito, devolvemos seu investimento integralmente. Após esse período, você pode cancelar a qualquer momento, sem multas ou taxas de cancelamento.",
-  },
+  }
 ];
 
 const FAQ = () => {
