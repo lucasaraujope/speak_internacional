@@ -14,6 +14,7 @@ const Pricing = () => {
         basico: [
             {
                 name: t('corporate.sprint'),
+                description: t('corporate.sprintDesc'),
                 features: [
                     t('corporate.feature.4hours'),
                     t('corporate.feature.unlimitedPlatform'),
