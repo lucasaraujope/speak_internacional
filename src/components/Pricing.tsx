@@ -146,10 +146,6 @@ const Pricing = () => {
                                 <CardDescription className="text-muted-foreground">
                                     {plan.description}
                                 </CardDescription>
-                                <div className="flex items-center justify-center gap-2 mt-4">
-                                    <Clock className="w-5 h-5 text-secondary" />
-                                    <span className="text-foreground font-medium">{plan.hours}</span>
-                                </div>
                             </CardHeader>
 
                             <CardContent className="flex flex-col flex-grow">
